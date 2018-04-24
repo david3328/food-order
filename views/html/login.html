@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="views/css/login.css">
+  <title>FOOD | Login</title>
+</head>
+
+<body>
+  <div class="log-form" id="main">
+    <h2>Login to your account</h2>
+    <form @submit.prevent="logIn">
+      <input type="text" title="username" placeholder="username" v-model="name" />
+      <input type="password" title="username" placeholder="password" v-model="password" />
+      <button type="submit" class="btn">Login</button>
+    </form>
+  </div>
+  <!--end log form -->
+  <script src="views/js/libraries/vue.js"></script>
+  <script src="views/js/libraries/sweetalert2.js"></script>
+  <script src="views/js/login.js"></script>
+</body>
+
+</html>

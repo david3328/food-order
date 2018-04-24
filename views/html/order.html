@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+    crossorigin="anonymous">
+  <title>FOOD | Order</title>
+</head>
+
+<body>
+  <div id="main">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">FOOD | Administrar Ordenes</a>
+      <a href="#">Pendientes</a>
+      <div class="ml-auto">
+        <a href="?view=logout" class="btn btn-danger btn-inline">LogOUT</a>
+      </div>
+    </nav>
+    <div class="d-flex justify-content-center flex-wrap">
+
+    
+    <h2 class="mt-5 w-100 text-center">Total: {{orders.length}} ordenes pendientes.</h2>
+    <div class="d-flex bg-primary my-4 flex-wrap rounded" style="width:60%;height: 100%;">
+        <p class="text-white col-6 mt-3">Mesa</p>
+      </div>
+    <div class="d-flex flex-wrap my-1 rounded align-items-center" v-for="item in orders" style="width:60%;height: 100%;background-color:#ccc">
+        <p class="col-6 mt-3">MESA {{item.table}}</p>
+        <a class="col-2 btn btn-outline-success text-success mr-3" @click="viewOrder(item)">VER ORDEN</a>
+        <a class="col-2 btn btn-outline-danger text-danger ml-auto mr-2" @click="delOrder(item)">ELIMINAR</a>
+      </div>
+    </div>
+    <!-- modal de get order  -->
+    <div v-if="showModal" class="container-fluid pt-5 fixed-top bg-white h-100 w-100">
+      <p class="fixed-top m-5 text-danger" style="cursor:pointer" @click="showModal=false">X</p>
+      <h2 class="text-center mb-5">ORDEN {{myOrder.id}}, MESA {{myOrder.table}}</h2>
+      <ul class="list-group col col-6 mx-auto my-5">
+          <div type="button" class="list-group-item list-group-item-action active d-flex">
+              Platos
+              <p class="ml-auto">Cantidad</p>
+          </div>
+          <li class="list-group-item d-flex justify-content-between align-items-center" v-for="detail in myOrder.details">
+            {{detail.name}}
+            <span class="badge badge-primary badge-pill h3">{{detail.quantity}}</span>
+          </li>         
+        </ul>
+      <div class="d-flex justify-content-between mt-5 col-6 mx-auto">
+        <button class="btn btn-outline-success" @click="serviceOrder">ACEPTAR Y FINALIZAR</button>
+        <button class="btn btn-outline-warning" @click="showModal=false">REGRESAR A MENU</button>
+        <button class="btn btn-outline-danger" @click="delOrder(myOrder)">CANCELAR ORDEN</button>
+      </div>
+    </div>
+    <!-- fin modal get order -->
+  </div>
+  <script src="views/js/libraries/vue.js"></script>
+  <script src="views/js/libraries/sweetalert2.js"></script>
+  <script src="views/js/order.js"></script>
+</body>
+
+</html>

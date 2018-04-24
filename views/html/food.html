@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+    crossorigin="anonymous">
+  <title>FOOD | Get Food</title>
+</head>
+
+<body>
+  <div id="main">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">FOOD | Generar Orden</a>
+    <a class="btn btn-outline-success" href="?view=newOrder">Ver Orden</a>
+    <div class="ml-auto">
+      <a href="?view=logout" class="btn btn-danger btn-inline">LogOUT</a>
+    </div>
+  </nav>
+  <div class="container d-flex flex-wrap mt-5 justify-content-center">
+    <div class="form-group col-9">
+      <label>Buscar</label>
+      <input type="email" class="form-control" v-model="searchFood" placeholder="Ingrese Búsqueda">
+      <small id="emailHelp" class="form-text text-muted">Aquí puede buscar un plato en especifico.</small>
+    </div>
+    <div class="card col-md-3 m-2" v-for="item in myFood">
+      <img class="card-img-top" :src="item.img" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{item.name}}</h5>
+        <p class="card-text">{{item.description}}</p>
+        <p class="card-text text-primary">Precio: S/. {{item.price}}</p>
+        <div class="d-flex">
+          <input type="text" class="form-control mr-2" v-model="item.quantity" placeholder="Cantidad">  
+          <a href="#" class="btn btn-success" @click="addFood(item)">Agregar!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="views/js/libraries/vue.js"></script>
+  <script src="views/js/libraries/sweetalert2.js"></script>
+  <script src="views/js/food.js"></script>
+</body>
+
+</html>
